@@ -1,2 +1,2 @@
-Flappy-Firefly
+Flappy Firefly
 ==============
