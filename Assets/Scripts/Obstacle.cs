@@ -8,7 +8,7 @@ public class Obstacle : MonoBehaviour {
 	public Transform m_lower;
 	public SpriteRenderer m_lowerSprite;
 	public float m_hole;
-	public float m_holePosition;
+	public float m_holePosition = 0;
 
 	public GameObject[] m_upperBalkar;
 	public GameObject[] m_lowerBalkar;
@@ -28,7 +28,23 @@ public class Obstacle : MonoBehaviour {
 
 	void OnCreated()
 	{
-		m_holePosition =  Random.Range(-6.5f, 6.5f);
+
+        float newHolePos = Random.Range(-10f, 10f);
+
+        if (Mathf.Abs(m_holePosition - newHolePos) < 3f)
+        {
+            if (m_holePosition < 0)
+            {
+                m_holePosition = m_holePosition + 3f;
+            }
+            else
+            {
+                m_holePosition = m_holePosition - 3f;
+            }
+        }
+        
+
+        m_holePosition = newHolePos;
 
 		m_upper.localPosition = new Vector3(0,m_holePosition + m_upperSprite.bounds.extents.y + m_hole, 0);
 		m_lower.localPosition = new Vector3(0,m_holePosition - m_upperSprite.bounds.extents.y - m_hole, 0);
